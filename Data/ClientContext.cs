@@ -23,6 +23,6 @@ namespace TestMappingEfCore.Data
         {
         }
         //entities
-        public DbSet<Client> Client { get; set; }
+        public DbSet<Client> Clients { get; set; }
     }
 }

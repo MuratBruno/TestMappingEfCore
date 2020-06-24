@@ -13,6 +13,6 @@ namespace TestMappingEfCore.Models
     public class Client
     {
         [Key]
-        public string key { get; set; }
+        public int key { get; set; }
     }
 }
