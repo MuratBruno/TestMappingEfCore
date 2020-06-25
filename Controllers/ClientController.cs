@@ -71,7 +71,7 @@ namespace TestMappingEfCore.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    return clientRepository.Create(client).Result;
+                    return clientRepository.Update(client.key,client).Result;
 
                 }
             }
@@ -84,14 +84,15 @@ namespace TestMappingEfCore.Controllers
         }
 
         [HttpDelete]
-        public ActionResult<Client> Delete(Client client)
+        [Route("{id}")]
+        public ActionResult<Client> Delete(int key)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     
-                    return clientRepository.Create(client).Result;
+                    return clientRepository.Delete(key).Result;
 
                 }
             }
@@ -99,8 +100,7 @@ namespace TestMappingEfCore.Controllers
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
-            return View(client);
+            }           
         }
     }
 }

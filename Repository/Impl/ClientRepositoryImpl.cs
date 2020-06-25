@@ -24,7 +24,10 @@ namespace TestMappingEfCore.Repository.Impl
 
         public async Task<Client> Delete(int id)
         {
-            throw new NotImplementedException();
+            Client client =clientContext.Clients.Find(id);
+            clientContext.Remove(id);
+            await clientContext.SaveChangesAsync();
+            return client;
         }
 
         public IQueryable<Client> GetAll()
