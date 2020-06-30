@@ -9,9 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using TestMappingEfCore.Data;
 using TestMappingEfCore.Repository;
 using TestMappingEfCore.Repository.Impl;
+using TestMappingEfCore.Services;
+using TestMappingEfCore.Services.Impl;
 
 namespace TestMappingEfCore
 {
@@ -28,10 +31,11 @@ namespace TestMappingEfCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ClientContext>();
-            services.AddScoped<ClientRepository, ClientRepositoryImpl>();
+            services.AddScoped<IClientRepository, ClientRepositoryImpl>();
+            services.AddScoped<IClientService, ClientServiceImpl>();
             services.AddControllersWithViews();
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen((SwaggerGenOptions c) =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestMappingEFCore", Version = "v1" });
             });
