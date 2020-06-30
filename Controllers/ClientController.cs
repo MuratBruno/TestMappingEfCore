@@ -6,33 +6,38 @@ using System.Linq;
 using System.Threading.Tasks;
 using TestMappingEfCore.Data;
 using TestMappingEfCore.Models;
+using TestMappingEfCore.Models.Converter;
+using TestMappingEfCore.Models.DonneeDAO;
+using TestMappingEfCore.Models.MetierDBO;
 using TestMappingEfCore.Repository;
 using TestMappingEfCore.Repository.Impl;
+using TestMappingEfCore.Services;
 
 namespace TestMappingEfCore.Controllers
 {
+    /// <summary>
+    /// Controller du client : gestion des routes, reception des requetes http et redirection vers le service concerné
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ClientController : Controller
     {
-        ClientRepository clientRepository;
-        public ClientController(ClientRepository clientRepository)
+        IClientService clientService;
+        public ClientController(IClientService clientService)
         {
-            this.clientRepository = clientRepository;
+            this.clientService = clientService;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<Client> GetById(int key)
+        public ActionResult<ClientDTO> GetById(int id)
         {
-            Client client = new Client();
+            ClientDTO clientDTO = new ClientDTO();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    client = clientRepository.GetById(key).Result; ;
-                    return client;
-
+                    return   clientService.GetById(id);
                 }
             }
             catch (DataException /* dex */)
@@ -40,18 +45,18 @@ namespace TestMappingEfCore.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to get client. Try again, and if the problem persists see your system administrator.");
             }
-            return View(client);
+            return View(clientDTO);
         }
 
         [HttpPost]
-        public ActionResult<Client> Create(Client client)
+        public ActionResult<ClientDTO> Create(ClientDTO client)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                    return clientRepository.Create(client).Result;
+                    return clientService.Create(client);
 
                 }
             }
@@ -64,14 +69,14 @@ namespace TestMappingEfCore.Controllers
         }
 
         [HttpPut]
-        public ActionResult<Client> Update(Client client)
+        public ActionResult<ClientDTO> Update(ClientDTO client)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                    return clientRepository.Update(client.key,client).Result;
+                    return clientService.Update(client);
 
                 }
             }
@@ -85,15 +90,15 @@ namespace TestMappingEfCore.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public ActionResult<Client> Delete(int key)
+        public ActionResult<ClientDTO> Delete(int id)
         {
-            Client client = new Client();
+            ClientDTO client = new ClientDTO();
             try
             {
                 if (ModelState.IsValid)
                 {
                     
-                    return clientRepository.Delete(key).Result;
+                    return clientService.Delete(id);
 
                 }
             }
