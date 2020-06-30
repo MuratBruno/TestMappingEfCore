@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace TestMappingEfCore.Models.Converter
 {
     /// <summary>
-    /// Cette Interface établit les fonctions de conversion entre les interfaces DAO,DBO et DTO
+    /// Cette Interface établit les fonctions de conversion entre les couches DAO,DBO et DTO
     /// </summary>
     /// <typeparam name="DAO"></typeparam>
     /// <typeparam name="DBO"></typeparam>
