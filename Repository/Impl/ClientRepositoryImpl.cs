@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using TestMappingEfCore.Data;
 using TestMappingEfCore.Models;
+using TestMappingEfCore.Models.Converter;
+using TestMappingEfCore.Models.DonneeDAO;
+using TestMappingEfCore.Models.MetierDBO;
 
 namespace TestMappingEfCore.Repository.Impl
 {
-    public class ClientRepositoryImpl : ClientRepository
+    public class ClientRepositoryImpl : IClientRepository
     {
         private ClientContext clientContext { get; set; }
         public ClientRepositoryImpl(ClientContext clientContext)
@@ -15,34 +18,42 @@ namespace TestMappingEfCore.Repository.Impl
             this.clientContext = clientContext;
         }
 
-        public async Task<Client> Create(Client client)
+        //Pour les tests unitaires
+        public static ClientRepositoryImpl getRepositoryImpl()
         {
-            clientContext.Add(client);
-            await clientContext.SaveChangesAsync();
-            return client;
+            return new ClientRepositoryImpl(ClientContext.getContext());
         }
 
-        public async Task<Client> Delete(int id)
+        public async Task<ClientDAO> Create(ClientDAO clientDAO)
         {
-            Client client =clientContext.Clients.Find(id);
+            clientContext.Add(clientDAO);
+            await clientContext.SaveChangesAsync();
+            return clientDAO;
+        }
+
+        public async Task<ClientDAO> Delete(int id)
+        {
+            ClientDAO ClientDAO =clientContext.Clients.Find(id);
             clientContext.Remove(id);
             await clientContext.SaveChangesAsync();
-            return client;
+            return ClientDAO;
         }
 
-        public IQueryable<Client> GetAll()
+        public IQueryable<ClientDAO> GetAll()
         {
-            throw new NotImplementedException();
+            return clientContext.Clients;
         }
 
-        public async Task<Client> GetById(int id)
+        public async Task<ClientDAO> GetById(int id)
         {
-            return  clientContext.Clients.Find(id);
+            return await clientContext.Clients.FindAsync(id);           
         }
 
-        public async Task<Client> Update(int id, Client entity)
+        public async Task<ClientDAO> Update( ClientDAO entity)
         {
-            throw new NotImplementedException();
+            clientContext.Update(entity);
+            await clientContext.SaveChangesAsync();
+            return entity;
         }
     }
 }
