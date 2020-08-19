@@ -34,7 +34,7 @@ Ce projet me servira égalemment de base pour mes futurs projets c#.
 
 ### Sprint 1
 
-- [ ] Tests unitaires.
+- [x] Tests unitaires. (voir le projet TestMappingEfCoreTestsUnitaires)
 - [x] Ajout des branches git : Develop, Release, Sprint, Tâche.
 - [x] Ajout des couches model : Front (DTO), Métier (DBO), Données (DAO).
 - [x] Manuel d'installation.

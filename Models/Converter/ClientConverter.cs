@@ -23,6 +23,14 @@ namespace TestMappingEfCore.Models.Converter
             return clientConverter;
         }
 
+        //Constructeur privé
+        private ClientConverter()
+        {
+
+        }
+
+
+
         public ClientDBO fromDAOTodBO(ClientDAO dAO)
         {
             ClientDBO clientDBO = new ClientDBO();
