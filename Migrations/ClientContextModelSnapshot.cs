@@ -20,10 +20,10 @@ namespace TestMappingEfCore.Migrations
 
             modelBuilder.Entity("TestMappingEfCore.Models.Client", b =>
                 {
-                    b.Property<string>("key")
+                    b.Property<string>("id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("key");
+                    b.HasKey("id");
 
                     b.ToTable("Client");
                 });
