@@ -18,6 +18,12 @@ namespace TestMappingEfCore.Repository.Impl
             this.clientContext = clientContext;
         }
 
+        //Pour les tests unitaires
+        public static ClientRepositoryImpl getRepositoryImpl()
+        {
+            return new ClientRepositoryImpl(ClientContext.getContext());
+        }
+
         public async Task<ClientDAO> Create(ClientDAO clientDAO)
         {
             clientContext.Add(clientDAO);

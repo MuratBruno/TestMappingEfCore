@@ -15,6 +15,12 @@ namespace TestMappingEfCore.Data
 
         }
 
+        //Pour les tests unitaires
+        public static ClientContext getContext()
+        {
+            return new ClientContext();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=TestMappingEfCoreDB;Trusted_Connection=True;");

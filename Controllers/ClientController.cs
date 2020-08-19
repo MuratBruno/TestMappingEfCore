@@ -12,6 +12,7 @@ using TestMappingEfCore.Models.MetierDBO;
 using TestMappingEfCore.Repository;
 using TestMappingEfCore.Repository.Impl;
 using TestMappingEfCore.Services;
+using TestMappingEfCore.Services.Impl;
 
 namespace TestMappingEfCore.Controllers
 {
@@ -27,6 +28,13 @@ namespace TestMappingEfCore.Controllers
         {
             this.clientService = clientService;
         }
+
+        //Pour les tests unitaires
+        public static ClientController getClientController()
+        {
+            return new ClientController(ClientServiceImpl.getClientServiceImpl());
+        }
+
 
         [HttpGet]
         [Route("{id}")]

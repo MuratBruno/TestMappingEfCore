@@ -6,6 +6,7 @@ using TestMappingEfCore.Models.Converter;
 using TestMappingEfCore.Models.DonneeDAO;
 using TestMappingEfCore.Models.MetierDBO;
 using TestMappingEfCore.Repository;
+using TestMappingEfCore.Repository.Impl;
 
 namespace TestMappingEfCore.Services.Impl
 {
@@ -20,6 +21,12 @@ namespace TestMappingEfCore.Services.Impl
         public ClientServiceImpl(IClientRepository clientRepository)
         {
             this.clientRepository = clientRepository;
+        }
+
+        //Pour les tests unitaires
+        public static ClientServiceImpl getClientServiceImpl()
+        {
+            return new ClientServiceImpl(ClientRepositoryImpl.getRepositoryImpl());
         }
         public ClientDTO Create(ClientDTO entity)
         {

@@ -10,11 +10,11 @@ namespace TestMappingEfCore.Migrations
                 name: "Client",
                 columns: table => new
                 {
-                    key = table.Column<string>(nullable: false)
+                    id = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Client", x => x.key);
+                    table.PrimaryKey("PK_Client", x => x.id);
                 });
         }
 
