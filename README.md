@@ -41,8 +41,9 @@ Ce projet me servira égalemment de base pour mes futurs projets c#.
 
 ### Sprint 2
 
+- [ ] Docker : conteneur pour une bdd sql server BDD
 - [ ] Implémenter la relation Achat ↔ Client 
-- [ ] Créer l'environnement docker : conteneur application + conteneur BDD
+- [ ] Créer l'environnement docker : conteneur application  
 
 ### Sprint 3
 
