@@ -23,7 +23,7 @@ namespace TestMappingEfCore.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=TestMappingEfCoreDB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=db;Database=master;User=sa;Password=toto123456;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
